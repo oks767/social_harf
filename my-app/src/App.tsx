@@ -1,12 +1,15 @@
 
 
+import { useNavigate } from 'react-router-dom'
 import './App.css'
-import AuthAndRegister from './screens/auth/Auth'
-import InputForRegister from './UI/Input'
 
 function App() {
+  let navigate = useNavigate()
   return (
-    <><AuthAndRegister/></>
+    <>
+    <button onClick={()=> {navigate('/')}}>Зайди сюда</button>
+    
+    </>
   )
 }
 

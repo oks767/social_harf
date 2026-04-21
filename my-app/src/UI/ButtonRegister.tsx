@@ -1,9 +1,9 @@
-import type { JSX } from "react";
+import type { JSX } from "react"
 
-function ButtonRegister (): JSX.Element {
+function ButtonRegister ({onclick}: any): JSX.Element {
     return(
 <>
-<button>Register</button></>
+<button onClick={onclick}>Register</button></>
     
 )
 }
