@@ -26,7 +26,7 @@ export const registerUser = createAsyncThunk<IUser, IInput>(
   }
 );
 
-const registerSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -54,5 +54,5 @@ const registerSlice = createSlice({
   }
 });
 
-export const { logout, clearError } = registerSlice.actions;
+export const { logout, clearError } = userSlice.actions;
 export default userSlice.reducer;
