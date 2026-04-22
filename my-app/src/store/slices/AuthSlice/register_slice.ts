@@ -1,58 +1,62 @@
-// store/slices/userSlice.ts
-import type { PayloadAction } from '@reduxjs/toolkit'
+// store/slices/AuthSlice/register_slice.ts
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-import type { IInput, IUser } from '../../../types/types'
-
-// Состояние слайса использует IUser
-interface UserState {
-  user: IUser | null;
-  isLoading: boolean;
-  error: string | null;
+interface RegisterState {
+    isLoading: boolean;
+    error: string | null;
+    success: boolean;
 }
 
-const initialState: UserState = {
-  user: null,
-  isLoading: false,
-  error: null
+const initialState: RegisterState = {
+    isLoading: false,
+    error: null,
+    success: false,
 };
-//передаем в dispatch
-export const registerUser = createAsyncThunk<IUser, IInput>(
-  'user/register',
-  async (userData: IInput) => {
-    const response = await axios.post('/api/users/register', userData);
-    return response.data.user; // Должен вернуть IUser
-  }
+
+export const registerUser = createAsyncThunk(
+    'register/registerUser',
+    async (userData: { name: string; email: string; password: string }) => {
+        const response = await axios.post('http://localhost:3001/api/v1/register', userData);
+        return response.data;
+    }
 );
 
-const userSlice = createSlice({
-  name: 'user',
-  initialState,
-  reducers: {
-    logout: (state) => {
-      state.user = null;
+const registerSlice = createSlice({
+    name: 'register',
+    initialState,
+    reducers: {
+        clearError: (state) => {
+            state.error = null;
+        },
+        clearSuccess: (state) => {
+            state.success = false;
+        },
+        resetRegister: (state) => {
+            state.isLoading = false;
+            state.error = null;
+            state.success = false;
+        },
     },
-    clearError: (state) => {
-      state.error = null;
-    }
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(registerUser.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(registerUser.fulfilled, (state, action: PayloadAction<IUser>) => {
-        state.isLoading = false;
-        state.user = action.payload;
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message || 'Ошибка регистрации';
-      });
-  }
+    extraReducers: (builder) => {
+        builder
+            .addCase(registerUser.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+                state.success = false;
+            })
+            .addCase(registerUser.fulfilled, (state) => {
+                state.isLoading = false;
+                state.success = true;
+                state.error = null;
+            })
+            .addCase(registerUser.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error.message || 'Registration failed';
+                state.success = false;
+            });
+    },
 });
 
-export const { logout, clearError } = userSlice.actions;
-export default userSlice.reducer;
+export const { clearError, clearSuccess, resetRegister } = registerSlice.actions;
+export default registerSlice.reducer;
