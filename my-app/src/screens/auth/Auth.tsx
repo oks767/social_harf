@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../store/hooks/hooks'; // ✅ используйте кастомные хуки
 import { clearError, clearSuccess, registerUser } from '../../store/slices/AuthSlice/register_slice'
+import styles from './Auth.module.scss'
 
 function AuthAndRegister() {
     const location = useLocation();
     const navigate = useNavigate();
     
-    // ✅ ПРАВИЛЬНО - вызываем функцию
+
     const dispatch = useAppDispatch();
     
     const isLoginMode = location.pathname === '/login';
@@ -58,23 +59,26 @@ function AuthAndRegister() {
     }, [dispatch]);
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={styles.form}  onSubmit={handleSubmit}>
             <h2>{isLoginMode ? 'Login' : 'Register'}</h2>
             
             {error && <div className="error-message">{error}</div>}
             
             {!isLoginMode && (
                 <input
+                    className={styles.input}
                     name="name"
                     type="text"
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="Full Name"
                     required
+                    
                 />
             )}
             
             <input
+            className={styles.input}
                 name="email"
                 type="email"
                 value={formData.email}
@@ -84,6 +88,7 @@ function AuthAndRegister() {
             />
             
             <input
+            className={styles.input}
                 name="password"
                 type="password"
                 value={formData.password}
@@ -92,7 +97,7 @@ function AuthAndRegister() {
                 required
             />
             
-            <button type="submit" disabled={isLoading}>
+            <button className={styles.button} type="submit" disabled={isLoading}>
                 {isLoading ? 'Loading...' : (isLoginMode ? 'Login' : 'Register')}
             </button>
         </form>

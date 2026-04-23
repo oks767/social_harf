@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap');
+:root {
+    /* Цвета */
+    --bg-primary: #F5F1E8;
+    --bg-secondary: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --color-accent: #6B9F98;
+    --color-accent-hover: #5A8A83;
+    --text-primary: #2C3E50;
+    --text-secondary: #7B8A9A;
+    --text-muted: #A0ABB8;
+    --color-success: #7CB342;
+    --color-warning: #E6A017;
+    --color-error: #D47B6A;
+    
+    /* Тени - мягкие, почти незаметные */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+    
+    /* Скругления - мягкие, но не слишком круглые */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    
+    /* Шрифты */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Inter', 'Montserrat', sans-serif;
+    
+    /* Анимации - медленные, предсказуемые */
+    --transition-slow: 0.3s ease;
+    --transition-normal: 0.2s ease;
+}

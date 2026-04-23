@@ -1,0 +1,36 @@
+@import '../../assets/styles/variables.module.scss';
+
+.form {
+	width: 320px;
+	margin: 20px;
+	background-color: var(--bg-primary);
+	border-radius: var(--radius-md);
+	display: flex;
+	flex-direction: column;
+	padding: 17px;
+	margin: 0 auto;
+	font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+	
+}
+.input {
+	height: 40px;
+	display: block;
+	margin: 20px;
+	outline: none;
+	border: var(--color-accent);
+	border-radius: 12px;
+}
+.button {
+	margin: 0 auto;
+	text-align: center;
+	background-color: var(--color-accent);
+	outline: none;
+	border: none;
+	border-radius: 13px;
+	padding: 13px;
+	cursor: pointer;
+	--transition-slow: 0.3s ease;
+	&:hover{
+		background-color: var(--color-accent-hover);
+	}
+}
