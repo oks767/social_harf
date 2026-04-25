@@ -1,14 +1,20 @@
 // App.tsx
 import { Route, Routes } from 'react-router-dom'
-import AuthAndRegister from './screens/auth/Auth'
+import Profile from './screens/Profile/Profile'
+// import AuthAndRegister from './screens/steppers/auth/Auth'
+import Register from './screens/steppers/auth/Register/Register'
+import Role from './screens/steppers/role/Role'
+
 
 function App() {
     return (
         <Routes>
             {/* 👇 Правильно - используем Route */}
-            <Route path="/register" element={<AuthAndRegister />} />
-            <Route path="/login" element={<AuthAndRegister />} />
-            <Route path="/" element={<div>Home</div>} />
+            <Route path="/register" element={<Register/>} />
+            <Route path='/profile' element={<Profile />} />
+            
+            
+            <Route path="/role" element={<Role />} />
         </Routes>
     );
 }

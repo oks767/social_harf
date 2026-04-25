@@ -7,10 +7,10 @@ const app = express()
 app.use(express.json());
 app.use(cookieParser());
 
-//функция генерации токена аксестокена
+//функция генерации токена аксес
 
 export function generateAccessToken (userId, email, password) {
-	jwt.sign({userId, email, password, type: 'access'}, process.env.JWT_SECRET, {expiresIn: process.env.ACCESS_TOKEN_LIFE || 15})
+	jwt.sign({userId, email, password, type: 'access'}, process.env.JWT_SECRET, {expiresIn: process.env.ACCESS_TOKEN_LIFE || '15m'})
 }
 
 //refreshtoken

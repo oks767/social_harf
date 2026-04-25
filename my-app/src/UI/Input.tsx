@@ -1,44 +1,37 @@
-import { useState, type JSX } from "react"
-import type { IInput } from "../types/types"
+// UI/Input.tsx
+import React from 'react'
+import styles from './Input.module.scss'; // создайте стили для инпута
 
-function InputForRegister({ name, email, password }: IInput): JSX.Element {
-  const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: ''
-    });
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-  return (
-    <>
-      <input 
-        type="text" 
-        name="name" 
-        placeholder="Ваше имя" 
-        value={name} 
-        onChange={handleChange}
-      />
-      <input 
-        type="email" 
-        name="email" 
-        placeholder="Email" 
-        value={email} 
-        onChange={handleChange}
-      />
-      <input 
-        type="password" 
-        name="password" 
-        placeholder="Пароль" 
-        value={password} 
-        onChange={handleChange}
-      />
-    </>
-  );
+interface InputProps {
+    name: string;
+    type: string;
+    placeholder: string;
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: string;
 }
 
-export default InputForRegister;
+const Input: React.FC<InputProps> = ({
+    name,
+    type,
+    placeholder,
+    value,
+    onChange,
+    error
+}) => {
+    return (
+        <div className={styles.inputWrapper}>
+            <input
+                className={`${styles.input} ${error ? styles.inputError : ''}`}
+                name={name}
+                type={type}
+                value={value}
+                onChange={onChange}
+                placeholder={placeholder}
+            />
+            {error && <span className={styles.errorText}>{error}</span>}
+        </div>
+    );
+};
+
+export default Input;

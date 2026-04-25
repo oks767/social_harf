@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import registerUser from './slices/AuthSlice/register_slice'
+import { default as homeSlice, default as registerUser, default as updateUserRole } from './slices/AuthSlice/register_slice'
+
 // ...
 const store = configureStore({
   reducer: {
-    auth: registerUser
+    auth: registerUser,
+    home: homeSlice,
+    role: updateUserRole
   },
 })
 export type RootState = ReturnType<typeof store.getState>
