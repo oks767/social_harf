@@ -2,25 +2,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../../store/hooks/hooks'
+import type { UserProfile } from '../../types/types'
 import styles from './Profile.module.scss'
-
-interface UserProfile {
-    id: string;
-    name: string;
-    email: string;
-    role: string;
-    createdAt: string;
-    // Поля для пациента
-    disorderType?: string;
-    disorderDescription?: string;
-    diagnosisDate?: string;
-    // Поля для врача
-    specialization?: string;
-    diploma?: string;
-    experience?: string;
-    licenseNumber?: string;
-    education?: string;
-}
 
 function Profile() {
     const navigate = useNavigate();
@@ -44,7 +27,7 @@ function Profile() {
         setUserProfile(currentUser);
         setIsLoading(false);
     }, [userData, navigate]);
-    
+    //поместить в кэш, танстак
     const handleLogout = () => {
         localStorage.removeItem('userData');
         localStorage.removeItem('userEmail');

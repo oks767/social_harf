@@ -16,3 +16,20 @@ export interface IUser {
 export interface RegisterData extends IInput {
 
 }
+export interface UserProfile {
+	id: string
+	name: string
+	email: string
+	role: string
+	createdAt: string
+	// Поля для пациента
+	disorderType?: string
+	disorderDescription?: string
+	diagnosisDate?: string
+	// Поля для врача
+	specialization?: string
+	diploma?: string
+	experience?: string
+	licenseNumber?: string
+	education?: string
+}

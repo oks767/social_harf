@@ -9,11 +9,11 @@ import Role from './screens/steppers/role/Role'
 function App() {
     return (
         <Routes>
-            {/* 👇 Правильно - используем Route */}
+            
             <Route path="/register" element={<Register/>} />
             <Route path='/profile' element={<Profile />} />
-            
-            
+            <Route path="/" element={<div>Home</div>} />
+    
             <Route path="/role" element={<Role />} />
         </Routes>
     );
